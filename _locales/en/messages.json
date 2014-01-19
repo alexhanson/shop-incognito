@@ -1,0 +1,10 @@
+{
+	"extension_name": {
+		"message": "Shop Incognito",
+		"description": "The extension's name."
+	},
+	"extension_description": {
+		"message": "Turn off Amazon browsing history in Chrome.",
+		"description": "The extension's description."
+	}
+}
