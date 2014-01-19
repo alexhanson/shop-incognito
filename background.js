@@ -1,1 +1,5 @@
-alert(chrome.i18n.getMessage("extension_name") + " has loaded!");
+// If an Amazon session exists, disable Amazon browsing history now.
+SI.disableBrowsingHistoryNow();
+
+// Disable Amazon browsing history any time the session is updated.
+SI.disableBrowsingHistoryLater();

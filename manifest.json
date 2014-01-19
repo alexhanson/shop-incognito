@@ -11,12 +11,14 @@
 
 	"background": {
 		"scripts": [
+			"SI.js",
 			"background.js"
 		]
 	},
 
 	"permissions": [
 		"cookies",
-		"http://*.amazon.com/"
+		"http://*.amazon.com/",
+		"https://*.amazon.com/"
 	]
 }

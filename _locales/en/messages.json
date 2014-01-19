@@ -6,5 +6,37 @@
 	"extension_description": {
 		"message": "Turn off Amazon browsing history in Chrome.",
 		"description": "The extension's description."
+	},
+	"session_found": {
+		"message": "Amazon session found.",
+		"description": "Indicates that an Amazon session was found."
+	},
+	"no_session_found": {
+		"message": "No Amazon session found.",
+		"description": "Indicates that an Amazon session was not found."
+	},
+	"checking_for_initial_session": {
+		"message": "Checking for a current Amazon session...",
+		"description": "Indicates that Shop Incognito is looking for an initial session."
+	},
+	"cookie_monitoring_enabled": {
+		"message": "Shop Incognito will monitor changes to your Amazon cookies and disable browsing history when an Amazon session starts.",
+		"description": "Indicates that Shop Incognito will disable browsing history for any future Amazon sessions."
+	},
+	"skipping_disable": {
+		"message": "Skipping disabling Amazon browsing history because we have already disabled it.",
+		"description": "Indicates that Shop Incognito will not disable browsing history because it has already been disabled."
+	},
+	"disabling_browsing_history": {
+		"message": "Disabling Amazon browsing history...",
+		"description": "Indicates that browsing history is being actively disabled."
+	},
+	"disable_browsing_success": {
+		"message": "Successfully disabled Amazon browsing history.",
+		"description": "Indicates that browsing history was successfully disabled."
+	},
+	"disable_browsing_error": {
+		"message": "Failed to disable Amazon browsing history.",
+		"description": "Indicates that an error occurred while disabling browsing history."
 	}
 }
