@@ -3,13 +3,13 @@ var SI = {
 	_suspendAutoDisable: false,
 
 	disableBrowsingHistoryNow: function() {
-		console.info(chrome.i18n.getMessage("checking_for_initial_session"));
+		console.debug(chrome.i18n.getMessage("checking_for_initial_session"));
 		chrome.cookies.get({
 			url: "http://www.amazon.com",
 			name: "session-id"
 		}, function(cookie) {
 			if (cookie) {
-				console.info(chrome.i18n.getMessage("session_found"));
+				console.debug(chrome.i18n.getMessage("session_found"));
 				this._disableBrowsingHistoryWithSessionId(cookie.value);
 			} else {
 				console.info(chrome.i18n.getMessage("no_session_found"));
@@ -30,7 +30,7 @@ var SI = {
 		if (!changeInfo.removed && changeInfo.cause === "explicit") {
 			var cookie = changeInfo.cookie;
 			if (cookie.domain === ".amazon.com" && cookie.name === "session-id") {
-				console.info(chrome.i18n.getMessage("session_found"));
+				console.debug(chrome.i18n.getMessage("session_found"));
 				this._disableBrowsingHistoryWithSessionId(cookie.value);
 			}
 		}
@@ -38,13 +38,13 @@ var SI = {
 
 	_disableBrowsingHistoryWithSessionId: function(sessionId) {
 		if (this._sessionId === sessionId) {
-			console.info(chrome.i18n.getMessage("skipping_disable"));
+			console.debug(chrome.i18n.getMessage("skipping_disable"));
 			return;
 		}
 
 		this._suspendAutoDisable = true;
 
-		console.info(chrome.i18n.getMessage("disabling_browsing_history"));
+		console.debug(chrome.i18n.getMessage("disabling_browsing_history"));
 
 		var formData = new FormData();
 		formData.append("setCS", "off");
