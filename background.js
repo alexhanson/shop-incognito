@@ -2,4 +2,4 @@
 SI.disableBrowsingHistoryNow();
 
 // Disable Amazon browsing history any time the session is updated.
-SI.disableBrowsingHistoryLater();
+SI.disableBrowsingHistoryWhenSessionIdChanges();
