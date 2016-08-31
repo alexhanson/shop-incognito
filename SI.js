@@ -98,7 +98,7 @@ function getSessionId() {
 			if (cookie) {
 				resolve(cookie.value);
 			} else {
-				reject(chrome.i18n.getMessage("cookie_retrieval_error"));
+				reject(new Error(chrome.i18n.getMessage("cookie_retrieval_error")));
 			}
 		});
 	});
