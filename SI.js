@@ -1,18 +1,18 @@
 var SI = {
 	disableBrowsingHistoryNow: function() {
 		console.debug(chrome.i18n.getMessage("checking_for_initial_session"));
-	   chrome.cookies.get({
-		   url: "http://www.amazon.com",
-		   name: "session-id"
-	   }, function(cookie) {
-		   if (cookie) {
-		   		this._sessionId = cookie.value;
+		chrome.cookies.get({
+			url: "http://www.amazon.com",
+			name: "session-id"
+		}, function(cookie) {
+			if (cookie) {
+				this._sessionId = cookie.value;
 				console.debug(chrome.i18n.getMessage("existing_session_found"));
 				this._disableBrowsingHistory();
-		   } else {
+			} else {
 				console.info(chrome.i18n.getMessage("no_session_found"));
-		   }
-	   }.bind(this));
+			}
+		}.bind(this));
 	},
 
 	disableBrowsingHistoryWhenSessionIdChanges: function() {
