@@ -98,7 +98,7 @@ function getSessionId() {
 			if (cookie) {
 				resolve(cookie.value);
 			} else {
-				reject(new Error("Could not retrieve current Amazon session ID."));
+				reject(chrome.i18n.getMessage("cookie_retrieval_error"));
 			}
 		});
 	});
