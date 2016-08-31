@@ -23,6 +23,10 @@
 		"message": "Checking for a current Amazon session...",
 		"description": "Indicates that Shop Incognito is looking for an initial session."
 	},
+	"cookie_retrieval_error": {
+		"message": "Could not find a current Amazon session.",
+		"description": "Indicates that a current Amazon session could not be discovered."
+	},
 	"cookie_monitoring_enabled": {
 		"message": "Shop Incognito will monitor changes to your Amazon cookies and disable browsing history when an Amazon session starts.",
 		"description": "Indicates that Shop Incognito will disable browsing history for any future Amazon sessions."
