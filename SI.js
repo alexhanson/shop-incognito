@@ -51,26 +51,6 @@ var SI = {
 	}
 };
 
-
-function postForm(url, formData) {
-	return new Promise(function(resolve, reject) {
-		var request = new XMLHttpRequest();
-
-		request.onreadystatechange = function() {
-			if (request.readyState === XMLHttpRequest.DONE) {
-				if (request.status === 200) {
-					resolve();
-				} else {
-					reject();
-				}
-			}
-		};
-
-		request.open("POST", url);
-		request.send(formData);
-	});
-}
-
 function disableBrowsingHistory() {
 	console.debug(chrome.i18n.getMessage("disabling_browsing_history"));
 
@@ -79,7 +59,12 @@ function disableBrowsingHistory() {
 	var formData = new FormData();
 	formData.append("action", "disable");
 
-	return postForm(amazonEndpoint, formData).then(
+	var params = {
+		method: "POST",
+		body: formData
+	};
+
+	return fetch(amazonEndpoint, params).then(
 		function() {
 			console.info(chrome.i18n.getMessage("disable_browsing_success"));
 		}.bind(this),
