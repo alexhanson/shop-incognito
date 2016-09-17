@@ -56,12 +56,14 @@ function disableBrowsingHistory() {
 
 	var amazonEndpoint = "https://www.amazon.com/gp/mobile/ybh/handlers/click-stream.html";
 
-	var formData = new FormData();
-	formData.append("action", "disable");
+	var postParams = new URLSearchParams();
+	postParams.append("action", "disable");
+	postParams.append("deviceType", "desktop");
 
 	var params = {
 		method: "POST",
-		body: formData
+		body: postParams,
+		credentials: "include"
 	};
 
 	return fetch(amazonEndpoint, params).then(
