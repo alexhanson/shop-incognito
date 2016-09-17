@@ -17,3 +17,4 @@ I haven't uploaded this extension publicly to the Chrome Web Store, but I _have_
 2. Run `publish.sh` to generate `shop-incognito.zip`.
 3. Upload `shop-incognito.zip` to the [Chrome Web Store](https://chrome.google.com/webstore/developer/dashboard) and publish the extension at whatever visibility you'd like.
 4. After the extension has published, install it from the Chrome Web Store.
+5. Optional: Navigate to your list of installed Chrome extensions and check "Allow in incognito" for this extension.
