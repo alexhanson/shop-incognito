@@ -63,7 +63,10 @@ class ShopIncognito {
 	_onCookieChange(changeInfo) {
 		if (!changeInfo.removed) {
 			const cookie = changeInfo.cookie;
-			if (cookie.domain === ".amazon.com" && cookie.name === "session-id") {
+			const isAmazon = (
+				cookie.domain === ".amazon.com" ||
+				cookie.domain === "smile.amazon.com");
+			if (isAmazon && cookie.name === "session-id") {
 				this._recordSessionId(cookie.value);
 			}
 		}
