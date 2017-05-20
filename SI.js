@@ -1,41 +1,73 @@
-var SI = {
-	// Public methods
+const _disableBrowsingHistory = () => {
+	console.debug(chrome.i18n.getMessage("disabling_browsing_history"));
 
-	start: function() {
+	const amazonEndpoint = "https://www.amazon.com/gp/mobile/ybh/handlers/click-stream.html";
+
+	const postParams = new URLSearchParams();
+	postParams.append("action", "disable");
+	postParams.append("deviceType", "desktop");
+
+	const params = {
+		method: "POST",
+		body: postParams,
+		credentials: "include",
+	};
+
+	return fetch(amazonEndpoint, params).then(
+		() => console.info(chrome.i18n.getMessage("disable_browsing_success")),
+		() => console.error(chrome.i18n.getMessage("disable_browsing_error")),
+	);
+};
+
+const _getSessionId = () => {
+	return new Promise((resolve, reject) => {
+		const params = {
+			url: "http://www.amazon.com",
+			name: "session-id"
+		};
+
+		chrome.cookies.get(params, cookie => {
+			if (cookie) {
+				resolve(cookie.value);
+			} else {
+				reject(new Error(chrome.i18n.getMessage("cookie_retrieval_error")));
+			}
+		});
+	});
+};
+
+class ShopIncognito {
+	constructor() {
+		this._sessionId = null;
+	}
+
+	start() {
 		console.debug(chrome.i18n.getMessage("checking_for_initial_session"));
 
-		getSessionId().then(
-			function(sessionId) {
+		_getSessionId().then(
+			sessionId => {
 				console.debug(chrome.i18n.getMessage("existing_session_found"));
 				return this._recordSessionId(sessionId);
-			}.bind(this), 
-			function() {
+			},
+			() => {
 				console.info(chrome.i18n.getMessage("no_session_found"));
-			}.bind(this)
+			}
 		).then(
-			function() {
+			() => {
 				chrome.cookies.onChanged.addListener(this._onCookieChange.bind(this));
 				console.info(chrome.i18n.getMessage("cookie_monitoring_enabled"));
-			}.bind(this)
+			}
 		);
-	},
+	}
 
-
-	// State
-
-	_sessionId: null,
-
-
-	// Private methods
-
-	_onCookieChange: function(changeInfo) {
+	_onCookieChange(changeInfo) {
 		if (!changeInfo.removed) {
-			var cookie = changeInfo.cookie;
+			const cookie = changeInfo.cookie;
 			if (cookie.domain === ".amazon.com" && cookie.name === "session-id") {
 				this._recordSessionId(cookie.value);
 			}
 		}
-	},
+	}
 
 	_recordSessionId(sessionId) {
 		if (sessionId !== this._sessionId) {
@@ -44,49 +76,9 @@ var SI = {
 			}
 
 			this._sessionId = sessionId;
-			return disableBrowsingHistory();
+			return _disableBrowsingHistory();
 		} else {
 			return Promise.resolve();
 		}
 	}
 };
-
-function disableBrowsingHistory() {
-	console.debug(chrome.i18n.getMessage("disabling_browsing_history"));
-
-	var amazonEndpoint = "https://www.amazon.com/gp/mobile/ybh/handlers/click-stream.html";
-
-	var postParams = new URLSearchParams();
-	postParams.append("action", "disable");
-	postParams.append("deviceType", "desktop");
-
-	var params = {
-		method: "POST",
-		body: postParams,
-		credentials: "include"
-	};
-
-	return fetch(amazonEndpoint, params).then(
-		function() {
-			console.info(chrome.i18n.getMessage("disable_browsing_success"));
-		}.bind(this),
-		function() {
-			console.error(chrome.i18n.getMessage("disable_browsing_error"));
-		}.bind(this)
-	);
-}
-
-function getSessionId() {
-	return new Promise(function(resolve, reject) {
-		chrome.cookies.get({
-			url: "http://www.amazon.com",
-			name: "session-id"
-		}, function(cookie) {
-			if (cookie) {
-				resolve(cookie.value);
-			} else {
-				reject(new Error(chrome.i18n.getMessage("cookie_retrieval_error")));
-			}
-		});
-	});
-}
