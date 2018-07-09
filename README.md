@@ -11,10 +11,10 @@ Amazon lets you disable your browsing history, but they store the setting in a c
 4. Optional: Check "Allow in incognito" for this extension.
 
 # Publishing this extension to the Chrome Web Store
-I haven't uploaded this extension publicly to the Chrome Web Store, but I _have_ uploaded it as an "unlisted" extension for my own use. This lets me avoid the warning about developer-mode extensions when Chrome starts up. If you want to do the same...
+Chrome warns about developer-mode extensions when it starts up, which can get annoying. To avoid this warning, you can upload Shop Incognito as an "unlisted" extension for your own use. Here's how:
 
 1. Clone this repository.
-2. Run `publish.sh` to generate `shop-incognito.zip`.
+2. Run `package.sh` to generate `shop-incognito.zip`.
 3. Upload `shop-incognito.zip` to the [Chrome Web Store](https://chrome.google.com/webstore/developer/dashboard) and publish the extension at whatever visibility you'd like.
 4. After the extension has published, install it from the Chrome Web Store.
 5. Optional: Navigate to your list of installed Chrome extensions and check "Allow in incognito" for this extension.
