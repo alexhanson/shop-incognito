@@ -1,3 +1,6 @@
+**Important:** This project is no longer maintained and may not work anymore.
+* * *
+
 Shop Incognito
 ==============
 A Chrome extension that turns off Amazon browsing history &mdash; and keeps it off.
