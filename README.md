@@ -1,4 +1,4 @@
-**Important:** This project is no longer maintained and may not work anymore.
+**Archived:** This project is no longer maintained and may not work anymore.
 * * *
 
 Shop Incognito
